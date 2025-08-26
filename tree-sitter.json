@@ -1,0 +1,21 @@
+{
+  "grammars": [
+    {
+      "name": "mtlog",
+      "camelcase": "Mtlog",
+      "scope": "source.mtlog",
+      "path": ".",
+      "file-types": [],
+      "injection-regex": "^mtlog$",
+      "highlights": "queries/highlights.scm",
+      "injections": "queries/injections.scm",
+      "textobjects": "queries/textobjects.scm"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for mtlog message templates",
+    "author": "Brandon Williams"
+  }
+}

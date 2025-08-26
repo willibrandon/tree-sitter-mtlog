@@ -1,0 +1,30 @@
+{
+  "name": "tree-sitter-mtlog",
+  "version": "0.1.0",
+  "main": "bindings/node",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "tree-sitter test",
+    "generate": "tree-sitter generate",
+    "build": "tree-sitter generate && node-gyp rebuild",
+    "parse": "tree-sitter parse",
+    "highlight": "tree-sitter highlight"
+  },
+  "keywords": ["tree-sitter", "mtlog", "parser", "syntax-highlighting"],
+  "author": "Brandon Williams",
+  "license": "MIT",
+  "description": "Tree-sitter grammar for mtlog message templates",
+  "tree-sitter": [
+    {
+      "scope": "source.mtlog",
+      "injection-regex": "^mtlog$",
+      "file-types": []
+    }
+  ],
+  "devDependencies": {
+    "nan": "^2.23.0",
+    "tree-sitter-cli": "^0.25.8"
+  }
+}
