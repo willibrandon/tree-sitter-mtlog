@@ -127,17 +127,32 @@ npm run benchmark          # Show parsing speed from test suite
 
 ```
 tree-sitter-mtlog/
-├── grammar.js           # Grammar definition
+├── grammar.js              # Grammar definition
 ├── src/
-│   ├── scanner.c       # External scanner for literal text
-│   └── parser.c        # Generated parser (do not edit)
+│   ├── scanner.c          # External scanner for literal text
+│   ├── parser.c           # Generated parser (do not edit)
+│   ├── grammar.json       # Generated grammar JSON
+│   ├── node-types.json    # Generated node types
+│   └── tree_sitter/       # Parser headers
+├── bindings/
+│   └── node/              # Node.js bindings
+│       ├── binding.cc
+│       └── index.js
 ├── queries/
-│   ├── highlights.scm  # Syntax highlighting queries
-│   └── textobjects.scm # Text object queries
-└── test/corpus/        # Test cases
-    ├── properties.txt
-    ├── go_templates.txt
-    └── edge_cases.txt
+│   ├── highlights.scm     # Syntax highlighting queries
+│   ├── injections.scm     # Language injection queries
+│   └── textobjects.scm    # Text object queries
+├── test/corpus/           # Test cases
+│   ├── properties.txt
+│   ├── go_templates.txt
+│   └── edge_cases.txt
+├── examples/
+│   └── simple.mtlog       # Example template file
+├── package.json           # NPM configuration
+├── binding.gyp            # Node-gyp build config
+├── tree-sitter.json       # Tree-sitter metadata
+├── CHANGELOG.md           # Version history
+└── LICENSE                # MIT license
 ```
 
 ## Design Philosophy
@@ -153,12 +168,14 @@ The grammar is **permissive by design**, accepting malformed templates to mainta
 
 ## Performance
 
-| Metric | Target | Actual |
-|--------|--------|--------|
-| Parse 100 chars | <1ms | 0.016ms |
-| Parse 1000 chars | <5ms | 0.16ms |
-| Memory per file | <100KB | ~50KB |
-| Test suite | 100% pass | 24/24 ✓ |
+The parser is optimized for zero-latency editor responsiveness:
+
+| Metric | Target | Actual | Result |
+|--------|---------|---------|--------|
+| Average parsing speed | - | **6779 bytes/ms** | ✅ |
+| 100-char template | <1ms | **0.015ms** | ✅ 67x faster than target |
+| 1000-char template | <5ms | **0.15ms** | ✅ 33x faster than target |
+| Test suite | 100% pass | **24/24** | ✅ All passing |
 
 ## Contributing
 
