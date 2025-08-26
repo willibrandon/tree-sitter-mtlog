@@ -11,7 +11,7 @@ src/tree_sitter/
 
 # Build output
 build/
-bindings/
+bindings/build/
 *.node
 *.o
 *.a
