@@ -144,7 +144,7 @@ tree-sitter-mtlog/
 
 This grammar focuses exclusively on **syntax highlighting and navigation**. It deliberately excludes:
 
-- ❌ Validation (handled by [mtlog-analyzer](https://github.com/willibrandon/mtlog-analyzer))
+- ❌ Validation (handled by [mtlog-analyzer](https://github.com/willibrandon/mtlog/tree/main/cmd/mtlog-analyzer))
 - ❌ Type checking
 - ❌ Cross-references
 - ❌ Diagnostics
