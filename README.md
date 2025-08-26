@@ -126,44 +126,6 @@ npx tree-sitter parse test/highlight/*.mtlog
 npm run benchmark          # Show parsing speed from test suite
 ```
 
-## Project Structure
-
-```
-tree-sitter-mtlog/
-├── grammar.js              # Grammar definition
-├── src/
-│   ├── scanner.c          # External scanner for literal text
-│   ├── parser.c           # Generated parser (do not edit)
-│   ├── grammar.json       # Generated grammar JSON
-│   ├── node-types.json    # Generated node types
-│   └── tree_sitter/       # Parser headers
-├── bindings/
-│   └── node/              # Node.js bindings
-│       ├── binding.cc
-│       └── index.js
-├── queries/
-│   ├── highlights.scm     # Syntax highlighting queries
-│   ├── injections.scm     # Language injection queries
-│   └── textobjects.scm    # Text object queries
-├── test/
-│   ├── corpus/            # Parser test cases
-│   │   ├── properties.txt
-│   │   ├── go_templates.txt
-│   │   └── edge_cases.txt
-│   └── highlight/         # Syntax highlighting samples
-│       ├── basic.mtlog
-│       ├── formats.mtlog
-│       ├── go_templates.mtlog
-│       ├── builtins.mtlog
-│       └── edge_cases.mtlog
-├── examples/
-│   └── simple.mtlog       # Example template file
-├── package.json           # NPM configuration
-├── binding.gyp            # Node-gyp build config
-├── tree-sitter.json       # Tree-sitter metadata
-├── CHANGELOG.md           # Version history
-└── LICENSE                # MIT license
-```
 
 ## Design Philosophy
 
