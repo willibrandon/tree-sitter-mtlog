@@ -1,0 +1,134 @@
+==================
+Unclosed property
+==================
+
+User {UserId logged in
+
+---
+
+(template
+  (literal_text))
+
+==================
+Empty property
+==================
+
+User {} logged in
+
+---
+
+(template
+  (literal_text)
+  (property)
+  (literal_text))
+
+==================
+Property with only format
+==================
+
+Price: {:F2}
+
+---
+
+(template
+  (literal_text)
+  (property
+    format: (format_spec
+      format_string: (identifier))))
+
+==================
+Multiple open braces
+==================
+
+{{{{
+
+---
+
+(template
+  (ERROR))
+
+==================
+Literal braces not forming properties
+==================
+
+{ not a property } and { also not }
+
+---
+
+(template
+  (literal_text))
+
+==================
+Mixed valid and invalid
+==================
+
+Valid {Property} then { invalid and {{.Valid}}
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (identifier))
+  (literal_text)
+  (go_property
+    name: (identifier)))
+
+==================
+Properties at boundaries
+==================
+
+{Start} middle {End}
+
+---
+
+(template
+  (property
+    name: (identifier))
+  (literal_text)
+  (property
+    name: (identifier)))
+
+==================
+Adjacent properties
+==================
+
+{Prop1}{Prop2}{Prop3}
+
+---
+
+(template
+  (property
+    name: (identifier))
+  (property
+    name: (identifier))
+  (property
+    name: (identifier)))
+
+==================
+Unicode in literal text
+==================
+
+用户 {UserId} 已登录 🎉
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (identifier))
+  (literal_text))
+
+==================
+Escaped characters in literal
+==================
+
+Path: C:\Users\{Username}\Documents
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (identifier))
+  (literal_text))

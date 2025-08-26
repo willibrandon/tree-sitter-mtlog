@@ -1,0 +1,6 @@
+User {UserId} logged in from {IP:15} at {Timestamp:HH:mm:ss}
+Order {@Order} created with total {Amount:F2}
+Service {service.name} in namespace {service.namespace} started
+Processing item {0} of {1}
+User {{.UserId}} performed action {{.Action}}
+[${Timestamp:yyyy-MM-dd HH:mm:ss} ${Level:u3}] ${Message}

@@ -1,0 +1,134 @@
+==================
+Simple property
+==================
+
+User {UserId} logged in
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (identifier))
+  (literal_text))
+
+==================
+Multiple properties
+==================
+
+User {UserId} performed {Action} at {Timestamp}
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (identifier))
+  (literal_text)
+  (property
+    name: (identifier))
+  (literal_text)
+  (property
+    name: (identifier)))
+
+==================
+Property with format
+==================
+
+Price: {Amount:F2} USD
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (identifier)
+    format: (format_spec
+      format_string: (identifier)))
+  (literal_text))
+
+==================
+Property with capture hint @
+==================
+
+Order {@Order} created
+
+---
+
+(template
+  (literal_text)
+  (property
+    hint: (hint_symbol)
+    name: (identifier))
+  (literal_text))
+
+==================
+Property with scalar hint $
+==================
+
+Error: {$Error}
+
+---
+
+(template
+  (literal_text)
+  (property
+    hint: (hint_symbol)
+    name: (identifier)))
+
+==================
+Numeric indexed properties
+==================
+
+Processing {0} of {1} items
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (numeric_index))
+  (literal_text)
+  (property
+    name: (numeric_index))
+  (literal_text))
+
+==================
+Dotted OTEL property
+==================
+
+HTTP {http.method} to {http.url} returned {http.status_code}
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (dotted_name
+      (identifier)
+      (identifier)))
+  (literal_text)
+  (property
+    name: (dotted_name
+      (identifier)
+      (identifier)))
+  (literal_text)
+  (property
+    name: (dotted_name
+      (identifier)
+      (identifier))))
+
+==================
+Complex format specifier
+==================
+
+Timestamp: {Time:yyyy-MM-dd HH:mm:ss}
+
+---
+
+(template
+  (literal_text)
+  (property
+    name: (identifier)
+    format: (format_spec
+      format_string: (identifier))))

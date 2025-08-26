@@ -1,0 +1,104 @@
+==================
+Simple Go template
+==================
+
+User {{.UserId}} logged in
+
+---
+
+(template
+  (literal_text)
+  (go_property
+    name: (identifier))
+  (literal_text))
+
+==================
+Go template without dot
+==================
+
+User {{UserId}} logged in
+
+---
+
+(template
+  (literal_text)
+  (go_property
+    name: (identifier))
+  (literal_text))
+
+==================
+Go template with dotted name
+==================
+
+Service {{.service.name}} in {{.service.namespace}}
+
+---
+
+(template
+  (literal_text)
+  (go_property
+    name: (dotted_name
+      (identifier)
+      (identifier)))
+  (literal_text)
+  (go_property
+    name: (dotted_name
+      (identifier)
+      (identifier))))
+
+==================
+Go template numeric index
+==================
+
+Item {{0}} of {{1}}
+
+---
+
+(template
+  (literal_text)
+  (go_property
+    name: (numeric_index))
+  (literal_text)
+  (go_property
+    name: (numeric_index)))
+
+==================
+Built-in property simple
+==================
+
+${Timestamp} ${Level}: ${Message}
+
+---
+
+(template
+  (builtin_property
+    name: (identifier))
+  (literal_text)
+  (builtin_property
+    name: (identifier))
+  (literal_text)
+  (builtin_property
+    name: (identifier)))
+
+==================
+Built-in property with format
+==================
+
+[${Timestamp:HH:mm:ss} ${Level:u3}] ${Message}
+
+---
+
+(template
+  (literal_text)
+  (builtin_property
+    name: (identifier)
+    format: (format_spec
+      format_string: (identifier)))
+  (literal_text)
+  (builtin_property
+    name: (identifier)
+    format: (format_spec
+      format_string: (identifier)))
+  (literal_text)
+  (builtin_property
+    name: (identifier)))
