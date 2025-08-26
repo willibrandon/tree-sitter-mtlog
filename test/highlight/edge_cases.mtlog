@@ -1,0 +1,7 @@
+Mixed: {UserId} and {{.Name}} with ${Level}
+Capture hints: {@Order} and {$Error}
+OTEL: {http.method} {service.name} {db.operation}
+Numeric: {0} {1} {2}
+Empty: {} {{}} ${}
+Unclosed: {UserId
+Multiple: {{{UserId}}}

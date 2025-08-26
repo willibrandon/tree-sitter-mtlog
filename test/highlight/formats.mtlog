@@ -1,0 +1,5 @@
+Price: {Amount:F2} USD
+Date: {Timestamp:yyyy-MM-dd}
+Time: {Time:HH:mm:ss}
+Percentage: {Value:P1}
+Debug: {Data:X}

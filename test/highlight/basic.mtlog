@@ -1,0 +1,5 @@
+User {UserId} logged in
+Processing {Count} items
+Error code: {ErrorCode}
+Temperature: {Temp} degrees
+Status: {Status}

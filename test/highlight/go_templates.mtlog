@@ -1,0 +1,4 @@
+User {{.UserId}} from {{.Location}}
+Order {{.OrderId}} contains {{.ItemCount}} items
+Customer {{.Customer.Name}} ({{.Customer.Email}})
+Address: {{.Address.Street}}, {{.Address.City}}

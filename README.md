@@ -116,6 +116,9 @@ npm test                    # Run all tests
 npm run test:update        # Update test expectations
 npm run parse <file>       # Parse a file
 npm run highlight <file>   # Test highlighting
+
+# Test highlight samples
+npx tree-sitter parse test/highlight/*.mtlog
 ```
 
 ### Benchmarking
@@ -142,10 +145,17 @@ tree-sitter-mtlog/
 │   ├── highlights.scm     # Syntax highlighting queries
 │   ├── injections.scm     # Language injection queries
 │   └── textobjects.scm    # Text object queries
-├── test/corpus/           # Test cases
-│   ├── properties.txt
-│   ├── go_templates.txt
-│   └── edge_cases.txt
+├── test/
+│   ├── corpus/            # Parser test cases
+│   │   ├── properties.txt
+│   │   ├── go_templates.txt
+│   │   └── edge_cases.txt
+│   └── highlight/         # Syntax highlighting samples
+│       ├── basic.mtlog
+│       ├── formats.mtlog
+│       ├── go_templates.mtlog
+│       ├── builtins.mtlog
+│       └── edge_cases.mtlog
 ├── examples/
 │   └── simple.mtlog       # Example template file
 ├── package.json           # NPM configuration

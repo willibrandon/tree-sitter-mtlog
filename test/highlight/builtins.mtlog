@@ -1,0 +1,3 @@
+${Timestamp} [${Level}] ${Message}
+${Timestamp:yyyy-MM-dd HH:mm:ss} [${Level:U3}] ${Message}
+${NewLine}${Exception}
