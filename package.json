@@ -7,12 +7,19 @@
   },
   "scripts": {
     "test": "tree-sitter test",
+    "test:update": "tree-sitter test --update",
     "generate": "tree-sitter generate",
     "build": "tree-sitter generate && node-gyp rebuild",
     "parse": "tree-sitter parse",
-    "highlight": "tree-sitter highlight"
+    "highlight": "tree-sitter highlight",
+    "benchmark": "tree-sitter test 2>&1 | grep 'average speed'"
   },
-  "keywords": ["tree-sitter", "mtlog", "parser", "syntax-highlighting"],
+  "keywords": [
+    "tree-sitter",
+    "mtlog",
+    "parser",
+    "syntax-highlighting"
+  ],
   "author": "Brandon Williams",
   "license": "MIT",
   "description": "Tree-sitter grammar for mtlog message templates",
@@ -26,5 +33,8 @@
   "devDependencies": {
     "nan": "^2.23.0",
     "tree-sitter-cli": "^0.25.8"
+  },
+  "dependencies": {
+    "tree-sitter": "^0.25.0"
   }
 }

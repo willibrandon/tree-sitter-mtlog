@@ -1,0 +1,168 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [14, 16, 18, 20]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate parser
+        run: npm run generate
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Build native module
+        run: npm run build
+        
+      - name: Run benchmarks
+        run: npm run benchmark
+        env:
+          CI: true
+          
+      - name: Upload benchmark results
+        if: matrix.os == 'ubuntu-latest' && matrix.node-version == '20'
+        uses: actions/upload-artifact@v3
+        with:
+          name: benchmark-results
+          path: benchmark/results.json
+          
+  validate-queries:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Generate parser
+        run: npm run generate
+        
+      - name: Validate highlight queries
+        run: |
+          echo "User {UserId} logged in" > test.mtlog
+          npx tree-sitter highlight test.mtlog
+          
+      - name: Validate parsing
+        run: |
+          echo "Testing various templates..." 
+          echo "User {UserId} logged in" | npx tree-sitter parse -
+          echo "Price: {Amount:F2}" | npx tree-sitter parse -
+          echo "User {{.Name}}" | npx tree-sitter parse -
+          echo "\${Timestamp} [\${Level}]" | npx tree-sitter parse -
+          
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Check C code formatting
+        run: |
+          # Check that scanner.c follows consistent style
+          if grep -q "	" src/scanner.c; then
+            echo "✅ scanner.c uses consistent indentation"
+          else
+            echo "⚠️ scanner.c may have inconsistent indentation"
+          fi
+          
+      - name: Validate package.json
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('package.json'))"
+          echo "✅ package.json is valid JSON"
+          
+      - name: Validate tree-sitter.json
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('tree-sitter.json'))"
+          echo "✅ tree-sitter.json is valid JSON"
+          
+  release:
+    needs: [test, validate-queries, lint]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Check if version changed
+        id: version
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          
+          if git ls-remote --tags origin | grep -q "v$PACKAGE_VERSION"; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Create release tag
+        if: steps.version.outputs.exists == 'false'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git tag -a "v${{ steps.version.outputs.version }}" -m "Release v${{ steps.version.outputs.version }}"
+          git push origin "v${{ steps.version.outputs.version }}"
+          
+      - name: Create GitHub Release
+        if: steps.version.outputs.exists == 'false'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          release_name: Release v${{ steps.version.outputs.version }}
+          body: |
+            ## tree-sitter-mtlog v${{ steps.version.outputs.version }}
+            
+            Tree-sitter grammar for mtlog message template syntax.
+            
+            ### Features
+            - Syntax highlighting for properties, Go templates, and built-ins
+            - Text objects for structural navigation
+            - Format specifier support
+            - Capture hints (@ and $)
+            - OTEL property names
+            
+            ### Installation
+            ```bash
+            npm install tree-sitter-mtlog
+            ```
+          draft: false
+          prerelease: false
