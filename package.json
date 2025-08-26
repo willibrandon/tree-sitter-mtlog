@@ -9,7 +9,8 @@
     "test": "tree-sitter test",
     "test:update": "tree-sitter test --update",
     "generate": "tree-sitter generate",
-    "build": "tree-sitter generate && node-gyp rebuild",
+    "build": "node-gyp rebuild",
+    "install": "tree-sitter generate && node-gyp rebuild",
     "parse": "tree-sitter parse",
     "highlight": "tree-sitter highlight",
     "benchmark": "tree-sitter test 2>&1 | grep 'average speed'"
@@ -30,11 +31,9 @@
       "file-types": []
     }
   ],
-  "devDependencies": {
-    "nan": "^2.23.0",
-    "tree-sitter-cli": "^0.25.8"
-  },
   "dependencies": {
-    "tree-sitter": "^0.25.0"
+    "nan": "^2.23.0",
+    "tree-sitter": "^0.25.0",
+    "tree-sitter-cli": "^0.25.8"
   }
 }
