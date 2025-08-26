@@ -25,6 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           
       - name: Install dependencies
+        shell: bash
         run: |
           # Retry up to 3 times with exponential backoff for network failures
           for i in 1 2 3; do
@@ -66,6 +67,7 @@ jobs:
           node-version: 20
           
       - name: Install dependencies
+        shell: bash
         run: |
           # Retry up to 3 times with exponential backoff for network failures
           for i in 1 2 3; do
