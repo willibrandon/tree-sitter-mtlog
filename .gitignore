@@ -3,10 +3,10 @@ node_modules/
 package-lock.json
 yarn.lock
 
-# Generated parser files (but not headers)
-src/parser.c
-src/grammar.json
-src/node-types.json
+# Generated parser files are committed for Zed extension compatibility
+# src/parser.c
+# src/grammar.json
+# src/node-types.json
 
 # Build output
 build/
