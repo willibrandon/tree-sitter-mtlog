@@ -55,6 +55,7 @@ bool tree_sitter_mtlog_external_scanner_scan(void *payload, TSLexer *lexer, cons
     }
 
     switch (c) {
+      case '\r':
       case '\n':
         // If we've collected content, emit it before newline; otherwise,
         // consume the newline and keep scanning within this token.
@@ -62,7 +63,7 @@ bool tree_sitter_mtlog_external_scanner_scan(void *payload, TSLexer *lexer, cons
           lexer->result_symbol = LITERAL_TEXT;
           return true;
         }
-        lexer->advance(lexer, false); // consume newline
+        lexer->advance(lexer, false); // consume newline/carriage return
         continue;
 
       case '{': {
@@ -84,7 +85,7 @@ bool tree_sitter_mtlog_external_scanner_scan(void *payload, TSLexer *lexer, cons
 
           if (maybe_property) {
             bool saw_close = false;
-            while (lexer->lookahead && lexer->lookahead != '\n') {
+            while (lexer->lookahead && lexer->lookahead != '\n' && lexer->lookahead != '\r') {
               if (lexer->lookahead == '}') { saw_close = true; break; }
               lexer->advance(lexer, false);
             }
@@ -163,7 +164,7 @@ bool tree_sitter_mtlog_external_scanner_scan(void *payload, TSLexer *lexer, cons
           lexer->advance(lexer, false); // consume '$'
           if (lexer->lookahead == '{') {
             bool saw_close = false;
-            while (lexer->lookahead && lexer->lookahead != '\n') {
+            while (lexer->lookahead && lexer->lookahead != '\n' && lexer->lookahead != '\r') {
               if (lexer->lookahead == '}') { saw_close = true; break; }
               lexer->advance(lexer, false);
             }
