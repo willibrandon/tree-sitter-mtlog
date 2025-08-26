@@ -25,7 +25,21 @@ jobs:
           node-version: ${{ matrix.node-version }}
           
       - name: Install dependencies
-        run: npm install
+        run: |
+          # Retry up to 3 times with exponential backoff for network failures
+          for i in 1 2 3; do
+            if npm install; then
+              echo "✅ npm install succeeded"
+              break
+            else
+              if [ $i -eq 3 ]; then
+                echo "❌ npm install failed after 3 attempts"
+                exit 1
+              fi
+              echo "⚠️ npm install failed (attempt $i/3), retrying in $((i*5)) seconds..."
+              sleep $((i*5))
+            fi
+          done
         
       - name: Generate parser
         run: npm run generate
@@ -52,7 +66,21 @@ jobs:
           node-version: 20
           
       - name: Install dependencies
-        run: npm install
+        run: |
+          # Retry up to 3 times with exponential backoff for network failures
+          for i in 1 2 3; do
+            if npm install; then
+              echo "✅ npm install succeeded"
+              break
+            else
+              if [ $i -eq 3 ]; then
+                echo "❌ npm install failed after 3 attempts"
+                exit 1
+              fi
+              echo "⚠️ npm install failed (attempt $i/3), retrying in $((i*5)) seconds..."
+              sleep $((i*5))
+            fi
+          done
         
       - name: Generate parser
         run: npm run generate
