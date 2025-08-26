@@ -74,10 +74,10 @@ jobs:
       - name: Validate parsing
         run: |
           echo "Testing various templates..." 
-          echo "User {UserId} logged in" | npx tree-sitter parse -
-          echo "Price: {Amount:F2}" | npx tree-sitter parse -
-          echo "User {{.Name}}" | npx tree-sitter parse -
-          echo "\${Timestamp} [\${Level}]" | npx tree-sitter parse -
+          echo "User {UserId} logged in" > test.mtlog && npx tree-sitter parse test.mtlog
+          echo "Price: {Amount:F2}" > test.mtlog && npx tree-sitter parse test.mtlog
+          echo "User {{.Name}}" > test.mtlog && npx tree-sitter parse test.mtlog
+          echo "\${Timestamp} [\${Level}]" > test.mtlog && npx tree-sitter parse test.mtlog
           
   lint:
     runs-on: ubuntu-latest
