@@ -172,9 +172,9 @@ The parser is optimized for zero-latency editor responsiveness:
 
 | Metric | Target | Actual | Result |
 |--------|---------|---------|--------|
-| Average parsing speed | - | **6779 bytes/ms** | ✅ |
-| 100-char template | <1ms | **0.015ms** | ✅ 67x faster than target |
-| 1000-char template | <5ms | **0.15ms** | ✅ 33x faster than target |
+| Average parsing speed | >100 bytes/ms | **6779 bytes/ms** | ✅ 67x faster |
+| 100-char template | <1ms | **0.015ms** | ✅ 67x faster |
+| 1000-char template | <5ms | **0.15ms** | ✅ 33x faster |
 | Test suite | 100% pass | **24/24** | ✅ All passing |
 
 ## Contributing
