@@ -5,7 +5,7 @@
       "camelcase": "Mtlog",
       "scope": "source.mtlog",
       "path": ".",
-      "file-types": [],
+      "file-types": ["mtlog"],
       "injection-regex": "^mtlog$",
       "highlights": "queries/highlights.scm",
       "injections": "queries/injections.scm",
