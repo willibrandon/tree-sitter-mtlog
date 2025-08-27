@@ -1,0 +1,112 @@
+================================================================================
+Go file with mtlog - Simple Info call
+================================================================================
+
+logger.Info("User {UserId} logged in")
+
+--------------------------------------------------------------------------------
+
+(template
+  (literal_text)
+  (property
+    (open_brace)
+    (identifier)
+    (close_brace))
+  (literal_text))
+
+================================================================================
+Go file with mtlog - With format specifier
+================================================================================
+
+logger.Error("Failed to process {OrderId:F2} for customer")
+
+--------------------------------------------------------------------------------
+
+(template
+  (literal_text)
+  (property
+    (open_brace)
+    (identifier)
+    (format_spec
+      (identifier))
+    (close_brace))
+  (literal_text))
+
+================================================================================
+Go file with mtlog - Multiple properties
+================================================================================
+
+log.Info("User {UserId} {{.Username}} logged in at {Timestamp:HH:mm:ss}")
+
+--------------------------------------------------------------------------------
+
+(template
+  (literal_text)
+  (property
+    (open_brace)
+    (identifier)
+    (close_brace))
+  (literal_text)
+  (go_property
+    (open_go)
+    (identifier)
+    (close_go))
+  (literal_text)
+  (property
+    (open_brace)
+    (identifier)
+    (format_spec
+      (identifier))
+    (close_brace))
+  (literal_text))
+
+================================================================================
+Go file with mtlog - WithConsoleTemplate  
+================================================================================
+
+mtlog.WithConsoleTemplate("[$`{Timestamp:15:04:05.000}] ${Level} ${Message}")
+
+--------------------------------------------------------------------------------
+
+(template
+  (literal_text)
+  (property
+    (open_brace)
+    (identifier)
+    (format_spec
+      (identifier))
+    (close_brace))
+  (literal_text)
+  (builtin_property
+    (open_builtin)
+    (identifier)
+    (close_builtin))
+  (literal_text)
+  (builtin_property
+    (open_builtin)
+    (identifier)
+    (close_builtin))
+  (literal_text))
+
+================================================================================
+Go file with mtlog - Chained With().Info()
+================================================================================
+
+logger.With("key", value).Info("Processing {@Order} with {$Debug}")
+
+--------------------------------------------------------------------------------
+
+(template
+  (literal_text)
+  (property
+    (open_brace)
+    (hint_symbol)
+    (identifier)
+    (close_brace))
+  (literal_text)
+  (property
+    (open_brace)
+    (hint_symbol)
+    (identifier)
+    (close_brace))
+  (literal_text))

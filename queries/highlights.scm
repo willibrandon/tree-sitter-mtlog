@@ -12,6 +12,7 @@
 
 ; Special punctuation for built-in properties
 (open_builtin) @punctuation.special
+(close_builtin) @punctuation.special
 
 ; Capture hints - @ for complex types, $ for scalar
 (property hint: (hint_symbol) @keyword.operator)

@@ -84,17 +84,17 @@ ${Timestamp} ${Level}: ${Message}
   (builtin_property
     (open_builtin)
     name: (identifier)
-    (close_brace))
+    (close_builtin))
   (literal_text)
   (builtin_property
     (open_builtin)
     name: (identifier)
-    (close_brace))
+    (close_builtin))
   (literal_text)
   (builtin_property
     (open_builtin)
     name: (identifier)
-    (close_brace)))
+    (close_builtin)))
 
 ==================
 Built-in property with format
@@ -111,16 +111,16 @@ Built-in property with format
     name: (identifier)
     format: (format_spec
       format_string: (identifier))
-    (close_brace))
+    (close_builtin))
   (literal_text)
   (builtin_property
     (open_builtin)
     name: (identifier)
     format: (format_spec
       format_string: (identifier))
-    (close_brace))
+    (close_builtin))
   (literal_text)
   (builtin_property
     (open_builtin)
     name: (identifier)
-    (close_brace)))
+    (close_builtin)))

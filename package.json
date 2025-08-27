@@ -28,7 +28,7 @@
     {
       "scope": "source.mtlog",
       "injection-regex": "^mtlog$",
-      "file-types": []
+      "file-types": ["mtlog"]
     }
   ],
   "dependencies": {

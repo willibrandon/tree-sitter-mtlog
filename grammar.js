@@ -44,10 +44,11 @@ module.exports = grammar({
       $.open_builtin,
       optional(field('name', $._property_name)),
       optional(field('format', $.format_spec)),
-      $.close_brace
+      $.close_builtin
     ),
     
     open_builtin: $ => '${',
+    close_builtin: $ => '}',
 
     // Hint as named aliases to literal values so fields print as strings
     // Named wrapper for hint to make queries possible; prints as (hint_symbol)

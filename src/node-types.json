@@ -37,7 +37,7 @@
       "required": true,
       "types": [
         {
-          "type": "close_brace",
+          "type": "close_builtin",
           "named": true
         },
         {
@@ -46,6 +46,16 @@
         }
       ]
     }
+  },
+  {
+    "type": "close_brace",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "close_builtin",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "dotted_name",
@@ -182,7 +192,6 @@
   {
     "type": "template",
     "named": true,
-    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -224,10 +233,6 @@
     "named": false
   },
   {
-    "type": "close_brace",
-    "named": true
-  },
-  {
     "type": "close_go",
     "named": true
   },
@@ -254,5 +259,9 @@
   {
     "type": "open_go",
     "named": true
+  },
+  {
+    "type": "}",
+    "named": false
   }
 ]

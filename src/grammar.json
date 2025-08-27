@@ -1,5 +1,4 @@
 {
-  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "mtlog",
   "rules": {
     "template": {
@@ -181,13 +180,17 @@
         },
         {
           "type": "SYMBOL",
-          "name": "close_brace"
+          "name": "close_builtin"
         }
       ]
     },
     "open_builtin": {
       "type": "STRING",
       "value": "${"
+    },
+    "close_builtin": {
+      "type": "STRING",
+      "value": "}"
     },
     "hint_symbol": {
       "type": "CHOICE",
@@ -296,6 +299,6 @@
     }
   ],
   "inline": [],
-  "supertypes": [],
-  "reserved": {}
+  "supertypes": []
 }
+
