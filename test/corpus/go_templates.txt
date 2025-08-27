@@ -13,7 +13,7 @@ User {{.UserId}} logged in
   (literal_text))
 
 ==================
-Go template without dot
+Go template without dot (invalid syntax - creates ERROR)
 ==================
 
 User {{UserId}} logged in
@@ -22,8 +22,8 @@ User {{UserId}} logged in
 
 (template
   (literal_text)
-  (go_property
-    name: (identifier))
+  (ERROR
+    (identifier))
   (literal_text))
 
 ==================
@@ -47,7 +47,7 @@ Service {{.service.name}} in {{.service.namespace}}
       (identifier))))
 
 ==================
-Go template numeric index
+Go template numeric index (invalid - should use single braces, creates ERROR)
 ==================
 
 Item {{0}} of {{1}}
@@ -56,11 +56,12 @@ Item {{0}} of {{1}}
 
 (template
   (literal_text)
-  (go_property
-    name: (numeric_index))
+  (ERROR
+    (numeric_index))
   (literal_text)
-  (go_property
-    name: (numeric_index)))
+  (ERROR
+    (numeric_index))
+  (literal_text))
 
 ==================
 Built-in property simple
@@ -102,3 +103,4 @@ Built-in property with format
   (literal_text)
   (builtin_property
     name: (identifier)))
+

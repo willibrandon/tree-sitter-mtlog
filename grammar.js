@@ -25,10 +25,10 @@ module.exports = grammar({
       '}'
     ),
 
-    // Go template property: require closing '}}'; rely on recovery when unclosed
+    // Go template property: require dot and closing '}}'; rely on recovery when unclosed
     go_property: $ => seq(
       '{{',
-      optional('.'),
+      '.',
       optional(field('name', $._property_name)),
       '}}'
     ),
