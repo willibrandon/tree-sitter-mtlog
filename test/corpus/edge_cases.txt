@@ -19,7 +19,9 @@ User {} logged in
 
 (template
   (literal_text)
-  (property)
+  (property
+    (open_brace)
+    (close_brace))
   (literal_text))
 
 ==================
@@ -33,8 +35,10 @@ Price: {:F2}
 (template
   (literal_text)
   (property
+    (open_brace)
     format: (format_spec
-      format_string: (identifier))))
+      format_string: (identifier))
+    (close_brace)))
 
 ==================
 Multiple open braces
@@ -45,7 +49,9 @@ Multiple open braces
 ---
 
 (template
-  (ERROR))
+  (ERROR
+    (open_go)
+    (open_go)))
 
 ==================
 Literal braces not forming properties
@@ -69,10 +75,14 @@ Valid {Property} then { invalid and {{.Valid}}
 (template
   (literal_text)
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (literal_text)
   (go_property
-    name: (identifier)))
+    (open_go)
+    name: (identifier)
+    (close_go)))
 
 ==================
 Properties at boundaries
@@ -84,10 +94,14 @@ Properties at boundaries
 
 (template
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (literal_text)
   (property
-    name: (identifier)))
+    (open_brace)
+    name: (identifier)
+    (close_brace)))
 
 ==================
 Adjacent properties
@@ -99,11 +113,17 @@ Adjacent properties
 
 (template
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (property
-    name: (identifier)))
+    (open_brace)
+    name: (identifier)
+    (close_brace)))
 
 ==================
 Unicode in literal text
@@ -116,7 +136,9 @@ Unicode in literal text
 (template
   (literal_text)
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (literal_text))
 
 ==================
@@ -130,5 +152,7 @@ Path: C:\Users\{Username}\Documents
 (template
   (literal_text)
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (literal_text))

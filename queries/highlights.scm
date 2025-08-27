@@ -3,16 +3,15 @@
 ; https://tree-sitter.github.io/tree-sitter/syntax-highlighting#standard-capture-names
 
 ; Punctuation - Property delimiters
-(property "{" @punctuation.bracket)
-(property "}" @punctuation.bracket)
+(open_brace) @punctuation.bracket
+(close_brace) @punctuation.bracket
 
 ; Special punctuation for Go templates
-(go_property "{{" @punctuation.special)
-(go_property "}}" @punctuation.special)
+(open_go) @punctuation.special
+(close_go) @punctuation.special
 
 ; Special punctuation for built-in properties
-(builtin_property "${" @punctuation.special)
-(builtin_property "}" @punctuation.special)
+(open_builtin) @punctuation.special
 
 ; Capture hints - @ for complex types, $ for scalar
 (property hint: (hint_symbol) @keyword.operator)

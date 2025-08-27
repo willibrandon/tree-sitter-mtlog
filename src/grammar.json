@@ -34,8 +34,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{"
+          "type": "SYMBOL",
+          "name": "open_brace"
         },
         {
           "type": "CHOICE",
@@ -86,17 +86,25 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "SYMBOL",
+          "name": "close_brace"
         }
       ]
+    },
+    "open_brace": {
+      "type": "STRING",
+      "value": "{"
+    },
+    "close_brace": {
+      "type": "STRING",
+      "value": "}"
     },
     "go_property": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "{{"
+          "type": "SYMBOL",
+          "name": "open_go"
         },
         {
           "type": "STRING",
@@ -119,17 +127,25 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "}}"
+          "type": "SYMBOL",
+          "name": "close_go"
         }
       ]
+    },
+    "open_go": {
+      "type": "STRING",
+      "value": "{{"
+    },
+    "close_go": {
+      "type": "STRING",
+      "value": "}}"
     },
     "builtin_property": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "${"
+          "type": "SYMBOL",
+          "name": "open_builtin"
         },
         {
           "type": "CHOICE",
@@ -164,10 +180,14 @@
           ]
         },
         {
-          "type": "STRING",
-          "value": "}"
+          "type": "SYMBOL",
+          "name": "close_brace"
         }
       ]
+    },
+    "open_builtin": {
+      "type": "STRING",
+      "value": "${"
     },
     "hint_symbol": {
       "type": "CHOICE",

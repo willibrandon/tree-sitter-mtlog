@@ -9,7 +9,9 @@ User {UserId} logged in
 (template
   (literal_text)
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (literal_text))
 
 ==================
@@ -23,13 +25,19 @@ User {UserId} performed {Action} at {Timestamp}
 (template
   (literal_text)
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (literal_text)
   (property
-    name: (identifier))
+    (open_brace)
+    name: (identifier)
+    (close_brace))
   (literal_text)
   (property
-    name: (identifier)))
+    (open_brace)
+    name: (identifier)
+    (close_brace)))
 
 ==================
 Property with format
@@ -42,9 +50,11 @@ Price: {Amount:F2} USD
 (template
   (literal_text)
   (property
+    (open_brace)
     name: (identifier)
     format: (format_spec
-      format_string: (identifier)))
+      format_string: (identifier))
+    (close_brace))
   (literal_text))
 
 ==================
@@ -58,8 +68,10 @@ Order {@Order} created
 (template
   (literal_text)
   (property
+    (open_brace)
     hint: (hint_symbol)
-    name: (identifier))
+    name: (identifier)
+    (close_brace))
   (literal_text))
 
 ==================
@@ -73,8 +85,10 @@ Error: {$Error}
 (template
   (literal_text)
   (property
+    (open_brace)
     hint: (hint_symbol)
-    name: (identifier)))
+    name: (identifier)
+    (close_brace)))
 
 ==================
 Numeric indexed properties
@@ -87,10 +101,14 @@ Processing {0} of {1} items
 (template
   (literal_text)
   (property
-    name: (numeric_index))
+    (open_brace)
+    name: (numeric_index)
+    (close_brace))
   (literal_text)
   (property
-    name: (numeric_index))
+    (open_brace)
+    name: (numeric_index)
+    (close_brace))
   (literal_text))
 
 ==================
@@ -104,19 +122,25 @@ HTTP {http.method} to {http.url} returned {http.status_code}
 (template
   (literal_text)
   (property
+    (open_brace)
     name: (dotted_name
       (identifier)
-      (identifier)))
+      (identifier))
+    (close_brace))
   (literal_text)
   (property
+    (open_brace)
     name: (dotted_name
       (identifier)
-      (identifier)))
+      (identifier))
+    (close_brace))
   (literal_text)
   (property
+    (open_brace)
     name: (dotted_name
       (identifier)
-      (identifier))))
+      (identifier))
+    (close_brace)))
 
 ==================
 Complex format specifier
@@ -129,6 +153,8 @@ Timestamp: {Time:yyyy-MM-dd HH:mm:ss}
 (template
   (literal_text)
   (property
+    (open_brace)
     name: (identifier)
     format: (format_spec
-      format_string: (identifier))))
+      format_string: (identifier))
+    (close_brace)))

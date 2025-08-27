@@ -9,7 +9,9 @@ User {{.UserId}} logged in
 (template
   (literal_text)
   (go_property
-    name: (identifier))
+    (open_go)
+    name: (identifier)
+    (close_go))
   (literal_text))
 
 ==================
@@ -23,6 +25,7 @@ User {{UserId}} logged in
 (template
   (literal_text)
   (ERROR
+    (open_go)
     (identifier))
   (literal_text))
 
@@ -37,14 +40,18 @@ Service {{.service.name}} in {{.service.namespace}}
 (template
   (literal_text)
   (go_property
+    (open_go)
     name: (dotted_name
       (identifier)
-      (identifier)))
+      (identifier))
+    (close_go))
   (literal_text)
   (go_property
+    (open_go)
     name: (dotted_name
       (identifier)
-      (identifier))))
+      (identifier))
+    (close_go)))
 
 ==================
 Go template numeric index (invalid - should use single braces, creates ERROR)
@@ -57,9 +64,11 @@ Item {{0}} of {{1}}
 (template
   (literal_text)
   (ERROR
+    (open_go)
     (numeric_index))
   (literal_text)
   (ERROR
+    (open_go)
     (numeric_index))
   (literal_text))
 
@@ -73,13 +82,19 @@ ${Timestamp} ${Level}: ${Message}
 
 (template
   (builtin_property
-    name: (identifier))
+    (open_builtin)
+    name: (identifier)
+    (close_brace))
   (literal_text)
   (builtin_property
-    name: (identifier))
+    (open_builtin)
+    name: (identifier)
+    (close_brace))
   (literal_text)
   (builtin_property
-    name: (identifier)))
+    (open_builtin)
+    name: (identifier)
+    (close_brace)))
 
 ==================
 Built-in property with format
@@ -92,15 +107,20 @@ Built-in property with format
 (template
   (literal_text)
   (builtin_property
+    (open_builtin)
     name: (identifier)
     format: (format_spec
-      format_string: (identifier)))
+      format_string: (identifier))
+    (close_brace))
   (literal_text)
   (builtin_property
+    (open_builtin)
     name: (identifier)
     format: (format_spec
-      format_string: (identifier)))
+      format_string: (identifier))
+    (close_brace))
   (literal_text)
   (builtin_property
-    name: (identifier)))
-
+    (open_builtin)
+    name: (identifier)
+    (close_brace)))
